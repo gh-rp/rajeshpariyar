@@ -2,75 +2,47 @@
 
 A static, dependency-free portfolio site (HTML/CSS/JS only) built for GitHub Pages. No build step, no framework — edit the files directly.
 
+Four parts: **Introduction**, **Skills & Tools**, **Projects**, **Contact**.
+
 ## File structure
 
 ```
 .
 ├── index.html            # all page content
 ├── css/style.css         # design system + layout
-├── js/script.js          # nav, filtering, form validation
+├── js/script.js          # nav menu + active-link highlighting only
 └── assets/
-    ├── projects/         # project card images (placeholders included)
-    └── images/           # spare folder for anything else (headshot, og-image, etc.)
+    ├── projects/         # project card images
+    └── images/           # spare folder for anything else
 ```
 
-## 1. Customize the content
+## Editing each part
 
-Everything is in plain HTML — open `index.html` and edit directly:
+Open `index.html` — each section is clearly marked with an HTML comment (`<!-- ================= ... ================= -->`) telling you what's editable and how.
 
-- **Header/hero** — your name, title, tagline, and the four stats in the title block (`Based in`, `Experience`, `Projects delivered`, `License`).
-- **About** — the two paragraphs and the three fact numbers.
-- **Expertise** — the four `.spec-card` blocks (Structural / Transportation / Water Resources / Geotechnical). Rename sections or add more `<article class="spec-card">` blocks to match your own specialties.
-- **Projects** — each `<article class="project-card">` is one project. To add a project, copy an existing card and:
-  1. Replace the image in `assets/projects/` (16:10 aspect ratio works best) and update the `src`/`alt`.
-  2. Update `data-category` on the `<article>` — this must match one of the filter buttons' `data-filter` values (`structural`, `transportation`, `water`, `geotechnical`), space-separated if a project spans more than one.
-  3. Update the sheet number, title, meta line, description, and tags.
-- **Experience** — edit the `<li class="timeline-item">` entries.
-- **Contact** — update the email, phone, and location in `.contact-details`.
-- **Resume** — replace `assets/Anisha-Rai-Resume.pdf` with your own PDF (keep the filename or update the `href` in the hero).
+- **Introduction** — one block near the top. Edit your name, title, and the description paragraph freely; write as much or as little as you want. The résumé button points to `assets/Your-Name-Resume.pdf` — replace that file with your real résumé (keep the filename, or edit the `href` next to it).
 
-Replace the placeholder JPGs in `assets/projects/` with real project photos or renders — they currently just say "REPLACE IMAGE" so it's obvious what's left to do.
+- **Skills & Tools** — a `.skill-group` is one category (e.g. "Structural Analysis"). Inside it, each `<li>` is one skill or tool.
+  - Add a skill: add another `<li>Skill Name</li>` line.
+  - Remove a skill: delete its `<li>` line.
+  - Add a category: copy a whole `<div class="skill-group">...</div>` block and edit it.
+  - Remove a category: delete its whole `<div class="skill-group">...</div>` block.
 
-## 2. Wire up the contact form
+- **Projects** — a `<article class="project-card">...</article>` is one project, with an image, title, subtitle (`.project-meta`), short description, and a "View project detail" link.
+  - Add a project: copy the whole `<article class="project-card">...</article>` block, paste it as a new sibling inside `.project-grid`, and edit the copy.
+  - Remove a project: delete its whole `<article>...</article>` block.
+  - The image: drop a new file into `assets/projects/` and point `src` at it.
+  - The link: point `href` at wherever you're keeping the full write-up — a page in this repo, a Google Doc, a Drive folder, a Notion page, anything with a shareable link. Just make sure the link is set to "anyone with the link can view" if it's Google Docs/Drive.
 
-The form validates on the client side but has no backend — submitting it currently just confirms the input looks valid, it doesn't send anywhere. To actually receive messages, pick one:
+- **Contact** — just edit the email and phone number directly in the `.contact-details` block.
 
-- **Formspree** (easiest): create a free form at [formspree.io](https://formspree.io), then set the form's `action` to your Formspree endpoint and remove the `e.preventDefault()` short-circuit in `js/script.js`'s submit handler (or follow Formspree's fetch-based AJAX instructions to keep the custom success message).
-- **Getform, Netlify Forms, Basin** — similar drop-in services if you're not using GitHub Pages exclusively.
-- **mailto fallback** — simplest option, no service required: change the `<form>` tag to `action="mailto:you@example.com" method="post" enctype="text/plain"`, though this opens the visitor's email client rather than sending silently.
+## Deploying to GitHub Pages
 
-## 3. Deploy to GitHub Pages
-
-1. Create a new GitHub repository (e.g. `your-username.github.io` for a root domain, or any name like `portfolio` for a project site).
-2. Push these files to the repository root:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial portfolio"
-   git branch -M main
-   git remote add origin https://github.com/your-username/your-repo.git
-   git push -u origin main
-   ```
-3. In the repository, go to **Settings → Pages**.
-4. Under **Build and deployment**, set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)`. Save.
-5. Wait a minute or two, then your site is live at:
-   - `https://your-username.github.io/` (if the repo is named `your-username.github.io`), or
-   - `https://your-username.github.io/your-repo/` (any other repo name).
-
-To use a custom domain, add a `CNAME` file at the repo root containing your domain, and configure the DNS records GitHub's Pages docs specify.
-
-## 4. Local preview
-
-No build tools needed — just open `index.html` in a browser, or serve it locally:
-
-```bash
-python3 -m http.server 8000
-# then visit http://localhost:8000
-```
+Same as before — see your repo's Settings → Pages, source set to `main` branch, `/ (root)` folder. If you've set up the VS Code + Live Server + Git workflow, your loop is: edit → save → preview locally → commit → push, and Pages rebuilds automatically within a minute or two.
 
 ## Notes
 
-- Fonts (Big Shoulders Display, IBM Plex Sans, IBM Plex Mono) load from Google Fonts via the `<link>` tags in `<head>` — no local font files needed.
-- The design has no external JS dependencies.
+- No contact form, no backend — contact is a plain email/phone link.
+- No project filtering — with a small number of projects it isn't needed; the grid just lists every `.project-card` in order.
+- Fonts (Big Shoulders Display, IBM Plex Sans, IBM Plex Mono) load from Google Fonts — no local font files needed.
 - Dark mode is automatic, following the visitor's OS-level preference.
-- Reduced-motion preferences are respected; there's minimal motion overall (hover states and a mobile menu transition only).

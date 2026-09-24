@@ -51,7 +51,7 @@ body {
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
-ul, ol { margin: 0; padding: 0; list-style: none; }
+ul, ol, dl { margin: 0; padding: 0; list-style: none; }
 h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); font-weight: 700; line-height: 1.02; letter-spacing: 0.01em; }
 p { margin: 0 0 1em; max-width: 62ch; }
 button { font-family: inherit; }
@@ -115,9 +115,7 @@ button { font-family: inherit; }
   border: 1.5px solid var(--line-strong);
   font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500;
 }
-.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
 .brand-text { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
-.brand-sub { font-family: var(--font-mono); font-weight: 400; font-size: 0.65rem; color: var(--ink-soft); letter-spacing: 0.03em; }
 
 .site-nav ul { display: flex; gap: 2rem; }
 .site-nav a {
@@ -146,7 +144,7 @@ button { font-family: inherit; }
 }
 
 /* ==========================================================================
-   Hero
+   Hero / Introduction
    ========================================================================== */
 .hero { position: relative; overflow: hidden; }
 .hero-grid {
@@ -161,7 +159,7 @@ button { font-family: inherit; }
 .hero-inner {
   position: relative;
   display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center;
-  padding-block: clamp(3rem, 8vw, 6rem) clamp(2.5rem, 6vw, 4rem);
+  padding-block: clamp(3rem, 8vw, 6rem);
 }
 .hero-eyebrow {
   font-family: var(--font-mono); font-size: 0.8rem; color: var(--steel);
@@ -199,25 +197,8 @@ button { font-family: inherit; }
   .hero-panel { order: -1; }
 }
 
-.title-block { border-top: 1.5px solid var(--line-strong); background: var(--paper-raised); }
-.title-block-inner {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-}
-.tb-cell {
-  display: flex; flex-direction: column; gap: 0.25rem;
-  padding: 1.1rem 1.25rem;
-  border-left: 1px solid var(--line);
-}
-.tb-cell:first-child { border-left: none; }
-.tb-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-soft); text-transform: lowercase; }
-.tb-value { font-family: var(--font-mono); font-size: 1rem; font-weight: 500; }
-@media (max-width: 700px) {
-  .title-block-inner { grid-template-columns: repeat(2, 1fr); }
-  .tb-cell:nth-child(3) { border-left: none; }
-}
-
 /* ==========================================================================
-   Section scaffolding — dimension-line style dividers
+   Section scaffolding
    ========================================================================== */
 .section { padding-block: clamp(3.5rem, 8vw, 6rem); position: relative; }
 .section::before {
@@ -236,43 +217,24 @@ button { font-family: inherit; }
 }
 .section-head h2 { font-size: clamp(2rem, 4vw, 2.6rem); }
 
-.section-grid { display: grid; grid-template-columns: 300px 1fr; gap: 3rem; }
-.section-grid .section-head { flex-direction: column; align-items: flex-start; }
-@media (max-width: 800px) { .section-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
-
-.lead-text { font-size: 1.1rem; }
-
-.fact-row { display: flex; gap: 2.5rem; margin-top: 2rem; flex-wrap: wrap; }
-.fact-num { display: block; font-family: var(--font-display); font-size: 2.4rem; color: var(--rust); line-height: 1; }
-.fact-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-soft); }
-
 /* ==========================================================================
-   Expertise
+   Skills & Tools
    ========================================================================== */
-.expertise-grid {
+.skills-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1px; background: var(--line); border: 1px solid var(--line);
 }
-.spec-card { background: var(--paper); padding: 1.75rem; }
-.spec-card h3 { font-size: 1.3rem; margin-bottom: 0.6rem; }
-.spec-card p { font-size: 0.94rem; color: var(--ink-soft); }
-.spec-list { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px dashed var(--line); }
-.spec-list div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.3rem 0; font-size: 0.8rem; }
-.spec-list dt { font-family: var(--font-mono); color: var(--ink-soft); }
-.spec-list dd { margin: 0; text-align: right; font-weight: 500; }
+.skill-group { background: var(--paper); padding: 1.75rem; }
+.skill-group h3 { font-size: 1.2rem; margin-bottom: 1rem; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skill-tags li {
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink);
+  border: 1px solid var(--line); padding: 0.35em 0.75em; border-radius: var(--radius);
+}
 
 /* ==========================================================================
    Projects
    ========================================================================== */
-.filter-row { display: flex; gap: 0.6rem; margin-bottom: 2.25rem; flex-wrap: wrap; }
-.filter-btn {
-  background: transparent; border: 1px solid var(--line); color: var(--ink-soft);
-  font-size: 0.82rem; font-family: var(--font-mono); padding: 0.5em 1em;
-  border-radius: var(--radius); cursor: pointer; transition: all 0.15s ease;
-}
-.filter-btn:hover { border-color: var(--ink); color: var(--ink); }
-.filter-btn.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-
 .project-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem;
 }
@@ -282,69 +244,28 @@ button { font-family: inherit; }
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
 .project-card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
-.project-card[hidden] { display: none; }
 .project-media { aspect-ratio: 16 / 10; background: var(--line); overflow: hidden; }
 .project-media img { width: 100%; height: 100%; object-fit: cover; }
 .project-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
-.project-sheet { font-family: var(--font-mono); font-size: 0.7rem; color: var(--steel); }
 .project-body h3 { font-size: 1.35rem; }
 .project-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-soft); margin-bottom: 0.4rem; }
 .project-body p:not(.project-meta) { font-size: 0.92rem; color: var(--ink-soft); margin-bottom: 0.75rem; }
-.project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
-.project-tags li {
-  font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-soft);
-  border: 1px solid var(--line); padding: 0.25em 0.6em; border-radius: var(--radius);
-}
 .project-link { margin-top: auto; font-weight: 600; font-size: 0.9rem; text-decoration: none; color: var(--rust); }
 .project-link:hover { text-decoration: underline; }
 
 /* ==========================================================================
-   Timeline
-   ========================================================================== */
-.timeline { position: relative; padding-left: 2rem; border-left: 1.5px solid var(--line); }
-.timeline-item { position: relative; padding-bottom: 2.5rem; }
-.timeline-item:last-child { padding-bottom: 0; }
-.timeline-item::before {
-  content: ""; position: absolute; left: -2.44rem; top: 0.35rem;
-  width: 9px; height: 9px; background: var(--rust); border-radius: 50%;
-}
-.timeline-date { font-family: var(--font-mono); font-size: 0.78rem; color: var(--steel); margin-bottom: 0.35rem; }
-.timeline-content h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
-.timeline-content p { font-size: 0.94rem; color: var(--ink-soft); }
-
-/* ==========================================================================
    Contact
    ========================================================================== */
-.contact-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 3rem; }
-.contact-lede { font-size: 1.05rem; color: var(--ink-soft); margin-top: 1rem; }
-.contact-details { margin-top: 2rem; }
-.contact-details div { display: flex; gap: 1rem; padding: 0.6rem 0; border-top: 1px solid var(--line); }
-.contact-details dt { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-soft); width: 80px; flex-shrink: 0; }
-.contact-details a { text-decoration: none; font-weight: 500; }
+.contact-details { max-width: 420px; }
+.contact-details div { display: flex; gap: 1rem; padding: 0.9rem 0; border-top: 1px solid var(--line); }
+.contact-details div:last-child { border-bottom: 1px solid var(--line); }
+.contact-details dt { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-soft); width: 80px; flex-shrink: 0; }
+.contact-details dd { margin: 0; }
+.contact-details a { text-decoration: none; font-weight: 500; font-size: 1.05rem; }
 .contact-details a:hover { color: var(--rust); }
-
-.contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-.form-row { display: flex; flex-direction: column; gap: 0.4rem; }
-.form-row label { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-soft); }
-.form-row input, .form-row textarea {
-  font-family: var(--font-body); font-size: 0.95rem; padding: 0.75em 0.9em;
-  border: 1px solid var(--line); background: var(--paper-raised); color: var(--ink);
-  border-radius: var(--radius); resize: vertical;
-}
-.form-row input:focus, .form-row textarea:focus { border-color: var(--steel); }
-.form-row.has-error input, .form-row.has-error textarea { border-color: var(--rust); }
-.form-error { font-family: var(--font-mono); font-size: 0.72rem; color: var(--rust); min-height: 1em; }
-.form-status { font-family: var(--font-mono); font-size: 0.85rem; margin: 0; }
-.form-status.is-success { color: var(--steel); }
-
-@media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; } }
 
 /* ==========================================================================
    Footer
    ========================================================================== */
 .site-footer { border-top: 1px solid var(--line); padding-block: 2rem; }
-.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-.footer-inner p { margin: 0; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-soft); }
-.footer-links { display: flex; gap: 1.25rem; }
-.footer-links a { font-family: var(--font-mono); font-size: 0.78rem; text-decoration: none; }
-.footer-links a:hover { color: var(--rust); }
+.site-footer p { margin: 0; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-soft); }
