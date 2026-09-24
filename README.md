@@ -18,16 +18,17 @@ A static, dependency-free portfolio site (HTML/CSS/JS only) built for GitHub Pag
 
 Everything is in plain HTML — open `index.html` and edit directly:
 
-- **Header/hero** — your name, title, tagline, and the four stats in the title block (`Based in`, `Experience`, `Projects delivered`, `License`).
+- **Header/hero** — your name, title, tagline, and the four stats in the title block (`Based in`, `Graduated`, `Self-directed projects`, `Core tools`).
 - **About** — the two paragraphs and the three fact numbers.
-- **Expertise** — the four `.spec-card` blocks (Structural / Transportation / Water Resources / Geotechnical). Rename sections or add more `<article class="spec-card">` blocks to match your own specialties.
+- **Skills & Tools** — the four `.spec-card` blocks (AutoCAD / Revit / ETABS / GIS). Add more `<article class="spec-card">` blocks for any other software you use.
 - **Projects** — each `<article class="project-card">` is one project. To add a project, copy an existing card and:
   1. Replace the image in `assets/projects/` (16:10 aspect ratio works best) and update the `src`/`alt`.
-  2. Update `data-category` on the `<article>` — this must match one of the filter buttons' `data-filter` values (`structural`, `transportation`, `water`, `geotechnical`), space-separated if a project spans more than one.
+  2. Update `data-category` on the `<article>` — this must match one of the filter buttons' `data-filter` values (`autocad`, `revit`, `etabs`, `gis`), space-separated if a project used more than one tool.
   3. Update the sheet number, title, meta line, description, and tags.
-- **Experience** — edit the `<li class="timeline-item">` entries.
+- **Articles & Notes** — each `<article class="article-card">` is one write-up. Point the "Read the write-up" link at a PDF in `assets/`, a Medium/LinkedIn post, or a page you publish elsewhere.
+- **Background** — edit the `<li class="timeline-item">` entries (education, capstone project, any courses or certificates).
 - **Contact** — update the email, phone, and location in `.contact-details`.
-- **Resume** — replace `assets/Anisha-Rai-Resume.pdf` with your own PDF (keep the filename or update the `href` in the hero).
+- **Resume** — replace `assets/Your-Name-Resume.pdf` with your own PDF (keep the filename or update the `href` in the hero).
 
 Replace the placeholder JPGs in `assets/projects/` with real project photos or renders — they currently just say "REPLACE IMAGE" so it's obvious what's left to do.
 
